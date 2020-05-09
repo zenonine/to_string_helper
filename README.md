@@ -15,10 +15,10 @@ Flexibly configure output of `toString` method using annotations and `build_runn
 2. Configure your class
    ```dart
    import 'package:to_string_helper/to_string.dart';
-   
+
    // assume current file is bike.dart, the generated code should be in bike.g.dart
    part 'bike.g.dart';
-   
+
    @ToString()
    class Bike {/*...*/}
    ```
@@ -28,7 +28,7 @@ Flexibly configure output of `toString` method using annotations and `build_runn
 4. Use the generated code to produce output of `toString`
    ```dart
    part 'bike.g.dart';
-   
+
    @ToString()
    class Bike {
      @override
