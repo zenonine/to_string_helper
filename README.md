@@ -25,7 +25,7 @@ Flexibly configure output of `toString` method using annotations and `build_runn
 3. Generate code (see [build_runner](https://pub.dev/packages/build_runner))
     * `pub run build_runner build`: run a single build and exit.
     * `pub run build_runner watch`: continuously run builds as you edit files.
-4. Use the generated code to produce output of toString
+4. Use the generated code to produce output of `toString`
    ```dart
    part 'bike.g.dart';
    
