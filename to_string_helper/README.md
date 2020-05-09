@@ -52,9 +52,9 @@ Flexibly configure output of `toString` method using annotations and `build_runn
         * Configure globally to truncate if the output of fields longer than 100 characters: `@ToString(truncate: 100)`
         * Overwrite global configuration for a specific field to truncate if output of the field is longer than 50 characters:
         ```dart
-        @ToString()
+        @ToString(truncate: 100)
         class Bike {
-          @ToString(truncate: 50)
+          @ToStringField(truncate: 50)
           final wheels = 2;
         }
         ```
@@ -69,7 +69,7 @@ Flexibly configure output of `toString` method using annotations and `build_runn
   ```dart
   @ToString()
   class Bike {
-    @ToStringExclude()
+    @ToStringField(exclude: true)
     final wheels = 2;
   }
   ```
