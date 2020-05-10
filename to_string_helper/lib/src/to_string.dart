@@ -9,7 +9,7 @@ class ToString {
   final String nullString;
 
   /// Note that, special char must be escaped manually.
-  /// For example, to use [$ ] as separator:
+  /// For example, to use `$` as separator:
   /// * invalid: [@ToString(separator = '\$')]
   /// * valid: [@ToString(separator = '\\\$')]
   final String separator;
