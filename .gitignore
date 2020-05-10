@@ -7,6 +7,11 @@ pubspec.lock
 ## Dart: generated code
 *.g.dart
 
+## Dart: dartdoc
+generator/doc/
+to_string_helper/doc/
+example/doc/
+
 ## IDE: JetBrains
 .idea/
 *.iml
