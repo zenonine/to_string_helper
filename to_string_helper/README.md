@@ -7,10 +7,10 @@ Flexibly configure output of `toString` method using annotations and `build_runn
 1. Add dependencies to your `pubspec.yaml`
    ```yaml
    dependencies:
-       to_string_helper
+       to_string_helper:
    dev_dependencies:
-       build_runner
-       to_string_helper_generator
+       build_runner:
+       to_string_helper_generator:
    ```
 2. Configure your class
    ```dart
