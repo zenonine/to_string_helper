@@ -1,10 +1,18 @@
+import 'include.dart';
+
 /// Annotation for class to configure output of `toString()` method.
 class ToString {
   const ToString({
+    this.globalInclude,
+    this.inclusion,
     this.nullString = 'null',
     this.separator = ', ',
     this.truncate = 0,
   });
+
+  final Include globalInclude;
+
+  final Map<Type, Include> inclusion;
 
   final String nullString;
 
@@ -19,6 +27,12 @@ class ToString {
 
   @override
   String toString() {
-    return 'ToString{nullString: $nullString, separator: $separator, truncate: $truncate}';
+    return 'ToString{'
+        'globalInclude: $globalInclude'
+        ', inclusion: $inclusion'
+        ', nullString: $nullString'
+        ', separator: $separator'
+        ', truncate: $truncate'
+        '}';
   }
 }
