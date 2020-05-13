@@ -1,5 +1,7 @@
 # Simple example
 ```dart
+import 'package:to_string_helper/to_string_helper.dart';
+
 part 'bike.g.dart';
 
 @ToString()
