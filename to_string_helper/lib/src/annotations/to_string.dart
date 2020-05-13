@@ -8,6 +8,7 @@ class ToString {
     this.nullString = 'null',
     this.separator = ', ',
     this.truncate = 0,
+    this.onlyValue = false,
   });
 
   final Include globalInclude;
@@ -22,8 +23,11 @@ class ToString {
   /// * valid: [@ToString(separator = '\\\$')]
   final String separator;
 
-  /// No truncate if smaller than or equal zero
+  /// No truncate if smaller than or equal zero.
   final int truncate;
+
+  /// Don't print field's name, only print field's value.
+  final bool onlyValue;
 
   @override
   String toString() {

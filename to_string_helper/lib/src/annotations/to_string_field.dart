@@ -3,6 +3,7 @@ class ToStringField {
   const ToStringField({
     this.exclude = false,
     this.truncate,
+    this.onlyValue,
   });
 
   /// Overwrite inclusion configuration in `@ToString()`.
@@ -13,6 +14,10 @@ class ToStringField {
   /// No truncate if smaller than or equal zero.
   /// Inherit truncate configuration in `@ToString()` if `null`.
   final int truncate;
+
+  /// Don't print field's name, only print field's value.
+  /// Inherit `onlyValue` configuration in `@ToString()` if `null`.
+  final bool onlyValue;
 
   @override
   String toString() {
