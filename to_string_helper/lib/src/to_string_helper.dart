@@ -34,10 +34,6 @@ class ToStringHelper {
   }
 
   String _memberToString(String name, dynamic value, {int truncate}) {
-    if (_sb.isEmpty) {
-      _open();
-    }
-
     if (omitNullValues && value == null) {
       return '';
     }
@@ -68,7 +64,14 @@ class ToStringHelper {
   /// If the given name is blank or null, adds an unnamed value to the formatted output.
   ToStringHelper add(String name, dynamic value, {int truncate}) {
     if (object != null) {
-      _sb.write(_memberToString(name, value, truncate: truncate));
+      final memberToString = _memberToString(name, value, truncate: truncate);
+      if (memberToString.isNotEmpty) {
+        // must open before add new member.
+        if (_sb.isEmpty) {
+          _open();
+        }
+        _sb.write(memberToString);
+      }
     }
     return this;
   }
@@ -83,6 +86,11 @@ class ToStringHelper {
   String toString() {
     if (object == null) {
       return nullString;
+    }
+
+    // must open before close.
+    if (_sb.isEmpty) {
+      _open();
     }
 
     _close();
