@@ -1,4 +1,4 @@
-name: to_string_helper_example
+name: to_string_helper_example_without_generator
 version: 0.0.1
 
 environment:
@@ -7,11 +7,9 @@ environment:
 dependencies:
   to_string_helper:
 
-dependency_overrides:
-  to_string_helper:
-    path: ../to_string_helper
-
 dev_dependencies:
   test: ^1.0.0
 
-
+dependency_overrides:
+  to_string_helper:
+    path: ../to_string_helper

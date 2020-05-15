@@ -54,11 +54,14 @@ You can choose either to use code generator or not.
     * `pub run build_runner watch`: continuously run builds as you edit files.
 4. Use the generated code to produce output of `toString`
    ```dart
-   //...
+   import 'package:to_string_helper/to_string_helper.dart';
+
+   part 'bike.g.dart';
 
    @ToString()
    class Bike {
-     //...
+     final hasEngine = false;
+     final wheels = 2;
 
      @override
      String toString() {
@@ -69,7 +72,7 @@ You can choose either to use code generator or not.
    ```
 5. Output
    ```
-   Bike{wheels=2, false}
+   Bike{wheels=2, hasEngine=false}
    ```
 
 # Configuration
