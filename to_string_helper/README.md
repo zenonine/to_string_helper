@@ -1,9 +1,36 @@
 # to_string_helper
 Note: this project is not ready to use yet. It will be released soon.
 
-Flexibly configure output of `toString` method using annotations and `build_runner`.
+Flexibly configure output of `toString` method.
+You can choose either to use code generator or not.
 
-# Usage
+# Example (without code generator)
+1. Add dependency to your `pubspec.yaml`
+   ```yaml
+   dependencies:
+       to_string_helper:
+   ```
+2. Configure your class
+   ```dart
+   import 'package:to_string_helper/to_string_helper.dart';
+
+   @ToString()
+   class Bike {
+     final hasEngine = false;
+     final wheels = 2;
+
+     return ToStringHelper(this)
+       .add('wheels', wheels) // named value
+       .addValue(hasEngine) // unnamed value
+       .toString();
+   }
+   ```
+3. Output
+   ```
+   Bike{wheels=2, false}
+   ```
+
+# Example (with code generator)
 1. Add dependencies to your `pubspec.yaml`
    ```yaml
    dependencies:
@@ -14,7 +41,7 @@ Flexibly configure output of `toString` method using annotations and `build_runn
    ```
 2. Configure your class
    ```dart
-   import 'package:to_string_helper/to_string.dart';
+   import 'package:to_string_helper/to_string_helper.dart';
 
    // assume current file is bike.dart, the generated code should be in bike.g.dart
    part 'bike.g.dart';
@@ -27,16 +54,22 @@ Flexibly configure output of `toString` method using annotations and `build_runn
     * `pub run build_runner watch`: continuously run builds as you edit files.
 4. Use the generated code to produce output of `toString`
    ```dart
-   part 'bike.g.dart';
+   //...
 
    @ToString()
    class Bike {
+     //...
+
      @override
      String toString() {
        // Name of the generated method is in format _$<className>ToString()
        return _$bikeToString(this);
      }
    }
+   ```
+5. Output
+   ```
+   Bike{wheels=2, false}
    ```
 
 # Configuration
