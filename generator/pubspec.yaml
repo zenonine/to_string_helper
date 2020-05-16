@@ -1,5 +1,5 @@
 name: to_string_helper_generator
-version: 0.1.0
+version: 0.1.1
 description: Generate code for package to_string_helper
 homepage: https://github.com/zenonine/to_string_helper
 repository: https://github.com/zenonine/to_string_helper/tree/master/generator
@@ -8,7 +8,7 @@ environment:
   sdk: ">=2.0.0 <3.0.0"
 
 dependencies:
-  to_string_helper:
+  to_string_helper: ^0.1.0
   analyzer: ^0.39.7
   build: ^1.0.0
   source_gen: ^0.9.5
@@ -16,7 +16,3 @@ dependencies:
 dev_dependencies:
   test: ^1.0.0
   build_test: ^1.0.0
-
-dependency_overrides:
-  to_string_helper:
-    path: ../to_string_helper
