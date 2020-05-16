@@ -3,10 +3,10 @@ import 'dart:collection';
 import 'package:analyzer/dart/element/element.dart';
 import 'package:source_gen/source_gen.dart';
 import 'package:to_string_helper/to_string_helper.dart';
-import 'package:to_string_helper_generator/src/configs/field_format_config.dart';
 
 import 'configs/config.dart';
 import 'configs/field_config.dart';
+import 'configs/field_format_config.dart';
 import 'configs/format_config.dart';
 
 const defaultFormatConfig = FormatConfig();

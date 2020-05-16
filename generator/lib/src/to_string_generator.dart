@@ -1,9 +1,10 @@
 import 'package:analyzer/dart/element/element.dart';
-import 'package:build/src/builder/build_step.dart';
+import 'package:build/build.dart';
 import 'package:source_gen/source_gen.dart';
 import 'package:to_string_helper/to_string_helper.dart';
-import 'package:to_string_helper_generator/src/config_helper.dart';
-import 'package:to_string_helper_generator/src/configs/config.dart';
+
+import 'config_helper.dart';
+import 'configs/config.dart';
 
 class ToStringGenerator extends GeneratorForAnnotation<ToString> {
   @override
