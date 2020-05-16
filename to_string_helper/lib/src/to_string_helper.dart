@@ -4,7 +4,6 @@ class ToStringHelper {
     this.nullString = 'null',
     this.separator = ', ',
     this.truncate = 0,
-    this.omitNullValues = false,
   });
 
   final Object object;
@@ -20,8 +19,6 @@ class ToStringHelper {
   /// No truncate if smaller than or equal zero
   final int truncate;
 
-  final bool omitNullValues;
-
   final _sb = StringBuffer();
   var _firstMember = true;
 
@@ -34,10 +31,6 @@ class ToStringHelper {
   }
 
   String _memberToString(String name, dynamic value, {int truncate}) {
-    if (omitNullValues && value == null) {
-      return '';
-    }
-
     var valueString = value?.toString() ?? nullString;
 
     // consider `null` as empty string when calculate length.

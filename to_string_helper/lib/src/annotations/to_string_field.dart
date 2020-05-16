@@ -3,7 +3,7 @@ class ToStringField {
   const ToStringField({
     this.exclude = false,
     this.truncate,
-    this.onlyPrintValue,
+    this.unnamedValue,
   });
 
   /// * Overwrite inclusion configuration in [@ToString()].
@@ -15,16 +15,16 @@ class ToStringField {
   /// * Inherit [truncate] configuration in [@ToString()] if [null].
   final int truncate;
 
-  /// * Don't print field's name, only print field's value.
-  /// * Inherit [onlyPrintValue] configuration in [@ToString()] if [null].
-  final bool onlyPrintValue;
+  /// * If [true], output shouldn't include field's name, only include field's value.
+  /// * Inherit [unnamedValue] configuration in [@ToString()] if [null].
+  final bool unnamedValue;
 
   @override
   String toString() {
     return 'ToStringField{'
         'exclude: $exclude'
         ', truncate: $truncate'
-        ', onlyPrintValue: $onlyPrintValue'
+        ', unnamedValue: $unnamedValue'
         '}';
   }
 }

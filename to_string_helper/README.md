@@ -83,24 +83,32 @@ You can choose either to use code generator or not.
     * `null` value
         * Default: `@ToString(nullString: 'null')`
         * Change output of null value to `NULL`: `@ToString(nullString: 'NULL')`
+    * Named and unnamed value
+        * Named value: `Bike{wheels=2}`.
+        * Unnamed value: `Bike{2}`.
+        * Default: `@ToString(unnamedValue: false)`.
+        * If `unnamedValue` is `true`, unnamed value should be used. Otherwise, use named value.
+        * Overwrite the global configuration for a specific field:
+          ```dart
+          @ToString(unnamedValue: false)
+          class Bike {
+            @ToStringField(unnamedValue: true)
+            final wheels = 2;
+          }
+          ```
     * Truncate if too long
         * Default: `@ToString(truncate: 0)`. Zero or negative value means no truncate.
         * Configure globally to truncate if the output of fields longer than 100 characters: `@ToString(truncate: 100)`
-        * Overwrite global configuration for a specific field to truncate if output of the field is longer than 50 characters:
-        ```dart
-        @ToString(truncate: 100)
-        class Bike {
-          @ToStringField(truncate: 50)
-          final wheels = 2;
-        }
-        ```
-    * Pretty print
-* Include fields from super classes
-* Include/exclude private fields
-* Include/exclude public fields
-* Include/exclude static fields
-* Include/exclude non-static fields
-* Include/exclude null value fields
+        * Overwrite the global configuration for a specific field to truncate
+          if output of the field is longer than 50 characters:
+          ```dart
+          @ToString(truncate: 100)
+          class Bike {
+            @ToStringField(truncate: 50)
+            final wheels = 2;
+          }
+          ```
+    * Pretty print (TODO)
 * Exclude a specific field
   ```dart
   @ToString()
@@ -109,3 +117,9 @@ You can choose either to use code generator or not.
     final wheels = 2;
   }
   ```
+* Include/exclude fields from super classes (TODO)
+* Include/exclude private fields (TODO)
+* Include/exclude public fields (TODO)
+* Include/exclude static fields (TODO)
+* Include/exclude non-static fields (TODO)
+* Include/exclude null value fields (TODO)
