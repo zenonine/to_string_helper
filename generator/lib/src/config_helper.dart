@@ -14,10 +14,14 @@ const defaultFormatConfig = FormatConfig();
 Config getConfig(ConstantReader annotation, ClassElement classElement) {
   return Config(
     format: FormatConfig(
-      nullString: _peek(annotation, 'nullString')?.stringValue ?? defaultFormatConfig.nullString,
-      separator: _peek(annotation, 'separator')?.stringValue ?? defaultFormatConfig.separator,
-      truncate: _peek(annotation, 'truncate')?.intValue ?? defaultFormatConfig.truncate,
-      unnamedValue: _peek(annotation, 'unnamedValue')?.boolValue ?? defaultFormatConfig.unnamedValue,
+      nullString: _peek(annotation, 'nullString')?.stringValue ??
+          defaultFormatConfig.nullString,
+      separator: _peek(annotation, 'separator')?.stringValue ??
+          defaultFormatConfig.separator,
+      truncate: _peek(annotation, 'truncate')?.intValue ??
+          defaultFormatConfig.truncate,
+      unnamedValue: _peek(annotation, 'unnamedValue')?.boolValue ??
+          defaultFormatConfig.unnamedValue,
     ),
     fields: _getFieldConfigs(classElement),
   );

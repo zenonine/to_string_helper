@@ -22,11 +22,11 @@ class ToStringHelper {
   final _sb = StringBuffer();
   var _firstMember = true;
 
-  _open() {
+  void _open() {
     _sb.write('${object.runtimeType}{');
   }
 
-  _close() {
+  void _close() {
     _sb.write('}');
   }
 
@@ -50,7 +50,9 @@ class ToStringHelper {
     }
 
     // ignore left part if name is blank or null
-    return name?.trim()?.isEmpty ?? true ? '$separator$valueString' : '$separator$name=$valueString';
+    return name?.trim()?.isEmpty ?? true
+        ? '$separator$valueString'
+        : '$separator$name=$valueString';
   }
 
   /// Adds a name/value pair to the formatted output in [name=value] format.
