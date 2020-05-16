@@ -1,5 +1,5 @@
 name: to_string_helper_example_with_generator
-version: 0.0.1
+version: 0.1.0
 
 environment:
   sdk: ">=2.0.0 <3.0.0"

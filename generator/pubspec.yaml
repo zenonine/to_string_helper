@@ -1,5 +1,5 @@
 name: to_string_helper_generator
-version: 0.0.1
+version: 0.1.0
 description: Generate code for package to_string_helper
 homepage: https://github.com/zenonine/to_string_helper
 repository: https://github.com/zenonine/to_string_helper/tree/master/generator

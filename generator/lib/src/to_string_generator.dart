@@ -2,6 +2,8 @@ import 'package:analyzer/dart/element/element.dart';
 import 'package:build/src/builder/build_step.dart';
 import 'package:source_gen/source_gen.dart';
 import 'package:to_string_helper/to_string_helper.dart';
+import 'package:to_string_helper_generator/src/config_helper.dart';
+import 'package:to_string_helper_generator/src/configs/config.dart';
 
 class ToStringGenerator extends GeneratorForAnnotation<ToString> {
   @override
@@ -11,10 +13,10 @@ class ToStringGenerator extends GeneratorForAnnotation<ToString> {
     }
     final clazz = element as ClassElement;
 
-    return _generateToStringMethod(clazz);
+    return _generateToStringMethod(clazz, getConfig(annotation, clazz));
   }
 
-  _generateToStringMethod(ClassElement clazz) {
+  _generateToStringMethod(ClassElement clazz, Config config) {
     const objectName = 'o';
     var classname = clazz.name;
     final methodName = _getToStringMethodName(classname);
@@ -23,9 +25,28 @@ class ToStringGenerator extends GeneratorForAnnotation<ToString> {
     final sb = StringBuffer()..writeln('String $methodName($classname $objectName) {');
 
     // start return statement
-    sb.writeln('return ToStringHelper($objectName)');
+    sb
+      ..writeln('return ToStringHelper($objectName')
+      ..writeln(defaultFormatConfig.nullString == config.format.nullString
+          ? ''
+          : ", nullString: '${config.format.nullString}'")
+      ..writeln(
+          defaultFormatConfig.separator == config.format.separator ? '' : ", separator: '${config.format.separator}'")
+      ..writeln(defaultFormatConfig.truncate == config.format.truncate ? '' : ', truncate: ${config.format.truncate}')
+      ..writeln(')');
 
-    // TODO: add fields
+    // Add fields
+    config.fields.forEach((fieldConfig) {
+      final memberRef = fieldConfig.field.isStatic ? fieldConfig.id : '$objectName.${fieldConfig.id}';
+
+      final unnamedValue = fieldConfig.format.unnamedValue ?? config.format.unnamedValue;
+
+      sb
+        ..writeln(unnamedValue ? '.addValue(' : ".add('${fieldConfig.id}', ")
+        ..writeln('$memberRef')
+        ..writeln(fieldConfig.format.truncate == null ? '' : ', truncate: ${fieldConfig.format.truncate}')
+        ..writeln(')');
+    });
 
     // end return statement
     sb.writeln('.toString();');

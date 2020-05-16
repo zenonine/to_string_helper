@@ -6,7 +6,7 @@ class ToString {
     this.nullString = 'null',
     this.separator = ', ',
     this.truncate = 0,
-    this.onlyPrintValue = false,
+    this.unnamedValue = false,
   });
 
   final String nullString;
@@ -20,8 +20,8 @@ class ToString {
   /// No truncate if smaller than or equal zero.
   final int truncate;
 
-  /// Don't print field's name, only print field's value.
-  final bool onlyPrintValue;
+  /// If [true], output shouldn't include field's name, only include field's value.
+  final bool unnamedValue;
 
   @override
   String toString() {
@@ -29,7 +29,7 @@ class ToString {
         'nullString: $nullString'
         ', separator: $separator'
         ', truncate: $truncate'
-        ', onlyPrintValue: $onlyPrintValue'
+        ', unnamedValue: $unnamedValue'
         '}';
   }
 }

@@ -15,7 +15,10 @@
   
     @override
     String toString() {
-      return ToStringHelper(this).add('wheels', wheels).addValue(hasEngine).toString();
+      return ToStringHelper(this)
+        .add('wheels', wheels) // named value
+        .addValue(hasEngine) // unnamed value
+        .toString();
     }
   }
   ```
@@ -40,6 +43,8 @@
   @ToString()
   class Bike {
     final hasEngine = false;
+
+    @ToStringField(exclude: true)
     final wheels = 2;
   
     @override
