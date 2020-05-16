@@ -1,7 +1,11 @@
 # to_string_helper
-Note: this project is not ready to use yet. It will be released soon.
+Flexibly configure output of `toString` method (with or without code generation).
 
-Flexibly configure output of `toString` method using annotations and `build_runner`.
+You can choose either to use code generator or not.
+
+If you want to generate code, you also need the package
+[to_string_helper_generator](https://pub.dev/packages/to_string_helper_generator).
+Otherwise, you only need the package [to_string_helper](https://pub.dev/packages/to_string_helper).
 
 * [Usage documentation](to_string_helper)
 * [Example](example)

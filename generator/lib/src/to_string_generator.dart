@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:analyzer/dart/element/element.dart';
 import 'package:build/build.dart';
 import 'package:source_gen/source_gen.dart';
@@ -8,22 +10,26 @@ import 'configs/config.dart';
 
 class ToStringGenerator extends GeneratorForAnnotation<ToString> {
   @override
-  generateForAnnotatedElement(Element element, ConstantReader annotation, BuildStep buildStep) {
+  Future<String> generateForAnnotatedElement(
+      Element element, ConstantReader annotation, BuildStep buildStep) async {
     if (element is! ClassElement) {
-      throw InvalidGenerationSourceError('@ToString() should only be annotated on class target', element: element);
+      throw InvalidGenerationSourceError(
+          '@ToString() should only be annotated on class target',
+          element: element);
     }
     final clazz = element as ClassElement;
 
     return _generateToStringMethod(clazz, getConfig(annotation, clazz));
   }
 
-  _generateToStringMethod(ClassElement clazz, Config config) {
+  String _generateToStringMethod(ClassElement clazz, Config config) {
     const objectName = 'o';
-    var classname = clazz.name;
+    final classname = clazz.name;
     final methodName = _getToStringMethodName(classname);
 
     // start method
-    final sb = StringBuffer()..writeln('String $methodName($classname $objectName) {');
+    final sb = StringBuffer()
+      ..writeln('String $methodName($classname $objectName) {');
 
     // start return statement
     sb
@@ -31,23 +37,31 @@ class ToStringGenerator extends GeneratorForAnnotation<ToString> {
       ..writeln(defaultFormatConfig.nullString == config.format.nullString
           ? ''
           : ", nullString: '${config.format.nullString}'")
-      ..writeln(
-          defaultFormatConfig.separator == config.format.separator ? '' : ", separator: '${config.format.separator}'")
-      ..writeln(defaultFormatConfig.truncate == config.format.truncate ? '' : ', truncate: ${config.format.truncate}')
+      ..writeln(defaultFormatConfig.separator == config.format.separator
+          ? ''
+          : ", separator: '${config.format.separator}'")
+      ..writeln(defaultFormatConfig.truncate == config.format.truncate
+          ? ''
+          : ', truncate: ${config.format.truncate}')
       ..writeln(')');
 
     // Add fields
-    config.fields.forEach((fieldConfig) {
-      final memberRef = fieldConfig.field.isStatic ? fieldConfig.id : '$objectName.${fieldConfig.id}';
+    for (final fieldConfig in config.fields) {
+      final memberRef = fieldConfig.field.isStatic
+          ? fieldConfig.id
+          : '$objectName.${fieldConfig.id}';
 
-      final unnamedValue = fieldConfig.format.unnamedValue ?? config.format.unnamedValue;
+      final unnamedValue =
+          fieldConfig.format.unnamedValue ?? config.format.unnamedValue;
 
       sb
         ..writeln(unnamedValue ? '.addValue(' : ".add('${fieldConfig.id}', ")
         ..writeln('$memberRef')
-        ..writeln(fieldConfig.format.truncate == null ? '' : ', truncate: ${fieldConfig.format.truncate}')
+        ..writeln(fieldConfig.format.truncate == null
+            ? ''
+            : ', truncate: ${fieldConfig.format.truncate}')
         ..writeln(')');
-    });
+    }
 
     // end return statement
     sb.writeln('.toString();');
@@ -59,6 +73,9 @@ class ToStringGenerator extends GeneratorForAnnotation<ToString> {
   }
 
   String _getToStringMethodName(String classname) {
-    return '_\$' + classname[0].toLowerCase() + classname.substring(1) + 'ToString';
+    return '_\$' +
+        classname[0].toLowerCase() +
+        classname.substring(1) +
+        'ToString';
   }
 }

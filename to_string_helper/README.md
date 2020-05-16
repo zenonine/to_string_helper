@@ -1,8 +1,11 @@
 # to_string_helper
-Note: this project is not ready to use yet. It will be released soon.
+Flexibly configure output of `toString` method (with or without code generation).
 
-Flexibly configure output of `toString` method.
 You can choose either to use code generator or not.
+
+If you want to generate code, you also need the package
+[to_string_helper_generator](https://pub.dev/packages/to_string_helper_generator).
+Otherwise, you only need this package.
 
 # Example (without code generator)
 1. Add dependency to your `pubspec.yaml`
@@ -75,7 +78,7 @@ You can choose either to use code generator or not.
    Bike{wheels=2, hasEngine=false}
    ```
 
-# Configuration
+# Configuration for code generator
 * Formatting output
     * Separator
         * Default is a comma follow with a space: `@ToString(separator: ', ')`

@@ -24,6 +24,7 @@
   ```
 
 # Simple example (with code generator)
+* Require package [to_string_helper_generator](https://pub.dev/packages/to_string_helper_generator)
 * `pubspec.yaml`
   ```yaml
   dependencies:
