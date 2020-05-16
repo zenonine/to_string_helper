@@ -14,3 +14,17 @@ class Bike extends Vehicle {
     return _$bikeToString(this);
   }
 }
+
+@ToString(
+  inclusion: {
+    Bike: Include(),
+  },
+)
+class EBike extends Bike {
+  final hasEngine = true;
+
+  @override
+  String toString() {
+    return _$eBikeToString(this);
+  }
+}
