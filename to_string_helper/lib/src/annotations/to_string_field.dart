@@ -2,6 +2,7 @@
 class ToStringField {
   const ToStringField({
     this.exclude = false,
+    this.includeNullValue,
     this.truncate,
     this.unnamedValue,
   });
@@ -10,6 +11,10 @@ class ToStringField {
   /// * Force to exclude this field if [true], regardless inclusion configuration in [@ToString()].
   /// * Otherwise, force to include this field, regardless inclusion configuration in [@ToString()].
   final bool exclude;
+
+  /// * Only take into account if [exclude] is [false].
+  /// * Inherit [Include.nullValue] if the given [includeNullValue] is [null].
+  final bool includeNullValue;
 
   /// * No truncate if smaller than or equal zero.
   /// * Inherit [truncate] configuration in [@ToString()] if [null].
@@ -23,6 +28,7 @@ class ToStringField {
   String toString() {
     return 'ToStringField{'
         'exclude: $exclude'
+        ', includeNullValue: $includeNullValue'
         ', truncate: $truncate'
         ', unnamedValue: $unnamedValue'
         '}';
