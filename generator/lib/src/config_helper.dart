@@ -12,7 +12,6 @@ import 'configs/format_config.dart';
 const defaultFormatConfig = FormatConfig();
 
 Config getConfig(ConstantReader annotation, ClassElement classElement) {
-  final Set<FieldConfig> fields = LinkedHashSet();
   return Config(
     format: FormatConfig(
       nullString: _peek(annotation, 'nullString')?.stringValue ?? defaultFormatConfig.nullString,
