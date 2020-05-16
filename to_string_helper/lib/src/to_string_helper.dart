@@ -4,6 +4,7 @@ class ToStringHelper {
     this.nullString = 'null',
     this.separator = ', ',
     this.truncate = 0,
+    this.includeNullValue = true,
   });
 
   final Object object;
@@ -19,6 +20,11 @@ class ToStringHelper {
   /// No truncate if smaller than or equal zero
   final int truncate;
 
+  /// If the field's value is [null],
+  /// * and [includeNullValue] is true, include the field in the output.
+  /// * and [includeNullValue] is not true, exclude the field in the output.
+  final bool includeNullValue;
+
   final _sb = StringBuffer();
   var _firstMember = true;
 
@@ -30,7 +36,13 @@ class ToStringHelper {
     _sb.write('}');
   }
 
-  String _memberToString(String name, dynamic value, {int truncate}) {
+  String _memberToString(String name, dynamic value,
+      {int truncate, bool includeNullValue}) {
+    final memberIncludeNullValue = includeNullValue ?? this.includeNullValue;
+    if (memberIncludeNullValue != true && value == null) {
+      return '';
+    }
+
     var valueString = value?.toString() ?? nullString;
 
     // consider [null] as empty string when calculate length.
@@ -57,7 +69,8 @@ class ToStringHelper {
 
   /// Adds a name/value pair to the formatted output in [name=value] format.
   /// If the given name is blank or null, adds an unnamed value to the formatted output.
-  ToStringHelper add(String name, dynamic value, {int truncate}) {
+  ToStringHelper add(String name, dynamic value,
+      {int truncate, bool includeNullValue}) {
     if (object != null) {
       final memberToString = _memberToString(name, value, truncate: truncate);
       if (memberToString.isNotEmpty) {
@@ -72,7 +85,8 @@ class ToStringHelper {
   }
 
   /// Adds an unnamed value to the formatted output.
-  ToStringHelper addValue(dynamic value, {int truncate}) {
+  ToStringHelper addValue(dynamic value,
+      {int truncate, bool includeNullValue}) {
     return add(null, value, truncate: truncate);
   }
 

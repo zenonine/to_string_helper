@@ -1,13 +1,16 @@
 import 'package:analyzer/dart/element/element.dart';
+import 'package:to_string_helper/to_string_helper.dart';
 
 import 'field_format_config.dart';
 
 class FieldConfig {
-  const FieldConfig(this.id, {this.field, this.exclude = false, this.format});
+  const FieldConfig(this.id,
+      {this.field, this.exclude = false, this.include, this.format});
 
   final String id;
   final FieldElement field;
   final bool exclude;
+  final Include include;
   final FieldFormatConfig format;
 
   @override
@@ -22,6 +25,12 @@ class FieldConfig {
 
   @override
   String toString() {
-    return 'FieldConfig{id: $id, field: $field, exclude: $exclude, format: $format}';
+    return 'FieldConfig{'
+        'id: $id'
+        ', field: $field'
+        ', exclude: $exclude'
+        ', include: $include'
+        ', format: $format'
+        '}';
   }
 }

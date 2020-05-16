@@ -43,6 +43,9 @@ class ToStringGenerator extends GeneratorForAnnotation<ToString> {
       ..writeln(defaultFormatConfig.truncate == config.format.truncate
           ? ''
           : ', truncate: ${config.format.truncate}')
+      ..writeln(config.globalInclude.nullValue
+          ? ''
+          : ', includeNullValue: ${config.globalInclude.nullValue}')
       ..writeln(')');
 
     // Add fields
@@ -60,6 +63,10 @@ class ToStringGenerator extends GeneratorForAnnotation<ToString> {
         ..writeln(fieldConfig.format.truncate == null
             ? ''
             : ', truncate: ${fieldConfig.format.truncate}')
+        ..writeln(
+            fieldConfig.include.nullValue == config.globalInclude.nullValue
+                ? ''
+                : ', includeNullValue: ${fieldConfig.include.nullValue}')
         ..writeln(')');
     }
 
