@@ -11,7 +11,7 @@ class ToStringHelper {
   final String nullString;
 
   /// Note that, special char must be escaped manually.
-  /// For example, to use `$` as separator:
+  /// For example, to use [$] as separator:
   /// * invalid: [@ToString(separator = '\$')]
   /// * valid: [@ToString(separator = '\\\$')]
   final String separator;
@@ -33,7 +33,7 @@ class ToStringHelper {
   String _memberToString(String name, dynamic value, {int truncate}) {
     var valueString = value?.toString() ?? nullString;
 
-    // consider `null` as empty string when calculate length.
+    // consider [null] as empty string when calculate length.
     final length = value == null ? 0 : valueString.length;
 
     // truncate valueString
@@ -53,7 +53,7 @@ class ToStringHelper {
     return name?.trim()?.isEmpty ?? true ? '$separator$valueString' : '$separator$name=$valueString';
   }
 
-  /// Adds a name/value pair to the formatted output in `name=value` format.
+  /// Adds a name/value pair to the formatted output in [name=value] format.
   /// If the given name is blank or null, adds an unnamed value to the formatted output.
   ToStringHelper add(String name, dynamic value, {int truncate}) {
     if (object != null) {
@@ -74,7 +74,7 @@ class ToStringHelper {
     return add(null, value, truncate: truncate);
   }
 
-  /// Returns the formatted `String`.
+  /// Returns the formatted [String].
   @override
   String toString() {
     if (object == null) {

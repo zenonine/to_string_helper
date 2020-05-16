@@ -1,4 +1,4 @@
-/// Annotation for a specific field to overwrite configuration in `@ToString()`
+/// Annotation for a specific field to overwrite configuration in [@ToString()]
 class ToStringField {
   const ToStringField({
     this.exclude = false,
