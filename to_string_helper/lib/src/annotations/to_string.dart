@@ -1,6 +1,8 @@
 import 'include.dart';
 
 /// Annotation for class to configure output of [toString()] method.
+/// The generated code is a method with name in format [_$classNameToString].
+/// For example, generated method for [Bike] class is [String _$bikeToString(Bike o)].
 class ToString {
   const ToString({
     this.globalInclude,
@@ -8,7 +10,7 @@ class ToString {
     this.nullString = 'null',
     this.separator = ', ',
     this.truncate = 0,
-    this.onlyPrintValue = false,
+    this.unnamedValue = false,
   });
 
   /// * If [globalInclude?.nullValue] is [null], fallback to [nullValue: true].
@@ -31,18 +33,18 @@ class ToString {
   /// No truncate if smaller than or equal zero.
   final int truncate;
 
-  /// Don't print field's name, only print field's value.
-  final bool onlyPrintValue;
+  /// If [true], output shouldn't include field's name, only include field's value.
+  final bool unnamedValue;
 
   @override
   String toString() {
     return 'ToString{'
         'globalInclude: $globalInclude'
         ', inclusion: $inclusion'
-        ', nullString: $nullString'
+        'nullString: $nullString'
         ', separator: $separator'
         ', truncate: $truncate'
-        ', onlyPrintValue: $onlyPrintValue'
+        ', unnamedValue: $unnamedValue'
         '}';
   }
 }
