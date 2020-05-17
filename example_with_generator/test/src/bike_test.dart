@@ -73,5 +73,12 @@ void main() {
             '}');
       });
     });
+
+    group('@ToStringField(unnamedValue)', () {
+      test('Haibike4EBike', () {
+        expect(Haibike4EBike().toString(),
+            'Haibike4EBike{black, secondColor=null}');
+      });
+    });
   });
 }
