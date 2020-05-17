@@ -8,7 +8,7 @@ environment:
   sdk: ">=2.0.0 <3.0.0"
 
 dependencies:
-  to_string_helper: ">=1.0.0-beta <1.0.0"
+  to_string_helper: ^1.0.0-beta
   analyzer: ^0.39.7
   build: ^1.0.0
   source_gen: ^0.9.5
@@ -16,3 +16,7 @@ dependencies:
 dev_dependencies:
   test: ^1.0.0
   build_test: ^1.0.0
+
+#dependency_overrides:
+#  to_string_helper:
+#    path: ../to_string_helper
