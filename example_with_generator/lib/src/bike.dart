@@ -15,12 +15,7 @@ class Bike extends Vehicle {
   }
 }
 
-@ToString(
-  globalInclude: Include(nullValue: false),
-  inclusion: {
-    Bike: Include(),
-  },
-)
+@ToString()
 class EBike extends Bike {
   final hasEngine = true;
 
