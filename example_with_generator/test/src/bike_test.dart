@@ -45,6 +45,12 @@ void main() {
             'Hercules3EBike{color=black, secondColor=null, wheels=2, hasEngine=true}');
       });
     });
+
+    group('@ToString(nullString, separator, truncate, unnamedValue)', () {
+      test('MoterraEBike', () {
+        expect(MoterraEBike().toString(), 'MoterraEBike{bla\$NULL}');
+      });
+    });
   });
 
   group('@ToStringField()', () {

@@ -128,6 +128,18 @@ class Hercules3EBike extends EBike {
   }
 }
 
+@ToString(
+    nullString: 'NULL', separator: '\\\$', truncate: 3, unnamedValue: true)
+class MoterraEBike extends EBike {
+  String color = 'black';
+  String secondColor;
+
+  @override
+  String toString() {
+    return _$moterraEBikeToString(this);
+  }
+}
+
 @ToString()
 class HaibikeEBike extends EBike {
   static String name = 'Haibike eBike';
