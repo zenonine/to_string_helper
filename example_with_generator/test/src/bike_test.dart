@@ -46,4 +46,13 @@ void main() {
       });
     });
   });
+
+  group('@ToStringField()', () {
+    group('@ToStringField(exclude)', () {
+      test('HaibikeEBike', () {
+        expect(HaibikeEBike().toString(),
+            'HaibikeEBike{secondColor=null, _engine=Haibike, _gears=5}');
+      });
+    });
+  });
 }
