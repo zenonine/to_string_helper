@@ -61,5 +61,17 @@ void main() {
             'Haibike2EBike{color=black, _engine=Haibike2, _wheelSize=null}');
       });
     });
+
+    group('@ToStringField(truncate)', () {
+      test('Haibike3EBike', () {
+        expect(
+            Haibike3EBike().toString(),
+            'Haibike3EBike{'
+            'Haibike3EBike._secondName=Haibike3 e'
+            ', color=black'
+            ', secondColor=null'
+            '}');
+      });
+    });
   });
 }
