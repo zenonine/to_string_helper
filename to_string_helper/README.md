@@ -111,7 +111,8 @@ Otherwise, you only need this package.
             final wheels = 2;
           }
           ```
-    * Pretty print (TODO)
+    * [Pretty print (TODO)](https://github.com/zenonine/to_string_helper/issues/17)
+
 * Exclude a specific field
   ```dart
   @ToString()
@@ -120,9 +121,97 @@ Otherwise, you only need this package.
     final wheels = 2;
   }
   ```
-* Include/exclude fields from super classes (TODO)
-* Include/exclude private fields (TODO)
-* Include/exclude public fields (TODO)
-* Include/exclude static fields (TODO)
-* Include/exclude non-static fields (TODO)
-* Include/exclude null value fields (TODO)
+
+* Include/exclude field types
+    * Example using `globalInclude`
+      ```dart
+      @ToString(
+        globalInclude: Include(
+          nullValue: true,
+          nonStatic: true,
+          static: false,
+          public: true,
+          private: false,
+        ),
+      )
+      class Bike {/*...*/}
+      ```
+    * Example using `inclusion`
+      ```dart
+      @ToString(
+        inclusion: {
+          Bike: Include(
+            nullValue: true,
+            nonStatic: true,
+            static: false,
+            public: true,
+            private: false,
+          ),
+        },
+      )
+      class Bike {/*...*/}
+      ```
+
+* Include/exclude inherited fields from super classes
+
+  By default, only declared fields in the annotated class are included in output.
+
+  To include non-override inherited fields, you must declare it in `@ToString()`.
+
+  Example:
+  ```dart
+  class Bike {
+    final wheels = 2;
+    final hasEngine = false;
+    final note = 'Bike';
+  }
+  
+  @ToString()
+  class EBike1 extends Bike {
+    @override
+    final hasEngine = true;
+    String color = 'red';
+
+    @override
+    String toString() {
+      return _$eBike1ToString(this);
+    }
+  }
+  
+  @ToString(inclusion: {Bike: Include()})
+  class EBike2 extends Bike {
+    @override
+    final hasEngine = true;
+    String color = 'black';
+  
+    @override
+    String toString() {
+      return _$eBike2ToString(this);
+    }
+  }
+  
+  void main() {
+    print(EBike1()); // EBike1{hasEngine=true, color=red}
+    print(EBike2()); // EBike2{hasEngine=true, color=black, wheels=2, note=Bike}
+  }
+  ```
+
+* How do `inclusion` and `globalInclude` work?
+    * It checks `inclusion` map to determine which class should be scanned for the output.
+      If the current annotated class is not found in `inclusion` map,
+      it adds automatically entry `{Bike: Include()}` to the map.
+    * If `globalInclude` is not specified, `Include()` instance is created and used automatically.
+    * `Include` in `inclusion` map and `globalInclude` is merged.
+      Below is an example how the attribute `nullValue` is merged.
+        * If `inclusion[Bike].nullValue` is `null`, check `globalInclude.nullValue`.
+        * If `globalInclude.nullValue` is `null`, fallback to default `Include` attribute value.
+    * Default `Include` attribute values:
+        * `nullValue`: `true`
+        * `nonStatic`: `true`
+        * `static`: `false`
+        * `public`: `true`
+        * `private`: `false`
+
+# More examples:
+* [Example - without code generator](https://github.com/zenonine/to_string_helper/tree/master/example_without_generator)
+* [Example - with code generator](https://github.com/zenonine/to_string_helper/tree/master/example_with_generator)
