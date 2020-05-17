@@ -6,8 +6,8 @@ part 'bike.g.dart';
 
 @ToString()
 class Bike extends Vehicle {
-  final hasEngine = false;
   final wheels = 2;
+  final hasEngine = false;
 
   @override
   String toString() {
@@ -77,5 +77,53 @@ class GiantEBike extends EBike {
   @override
   String toString() {
     return _$giantEBikeToString(this);
+  }
+}
+
+@ToString(inclusion: {EBike: Include()})
+class HerculesEBike extends EBike {
+  static String name = 'Hercules eBike';
+  static String _secondName = 'Hercules eBike Next Generation';
+  String color = 'black';
+  String secondColor;
+  var _engine = 'Hercules';
+  int _gears = 5;
+  int _wheelSize;
+
+  @override
+  String toString() {
+    return _$herculesEBikeToString(this);
+  }
+}
+
+@ToString(inclusion: {EBike: Include(), Bike: Include()})
+class Hercules2EBike extends EBike {
+  static String name = 'Hercules2 eBike';
+  static String _secondName = 'Hercules2 eBike Next Generation';
+  String color = 'black';
+  String secondColor;
+  var _engine = 'Hercules2';
+  int _gears = 5;
+  int _wheelSize;
+
+  @override
+  String toString() {
+    return _$hercules2EBikeToString(this);
+  }
+}
+
+@ToString(inclusion: {Bike: Include(), EBike: Include()})
+class Hercules3EBike extends EBike {
+  static String name = 'Hercules3 eBike';
+  static String _secondName = 'Hercules3 eBike Next Generation';
+  String color = 'black';
+  String secondColor;
+  var _engine = 'Hercules3';
+  int _gears = 5;
+  int _wheelSize;
+
+  @override
+  String toString() {
+    return _$hercules3EBikeToString(this);
   }
 }

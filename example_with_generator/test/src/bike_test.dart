@@ -5,7 +5,7 @@ void main() {
   group('toString()', () {
     group('minimal default configuration', () {
       test('Bike', () {
-        expect(Bike().toString(), 'Bike{hasEngine=false, wheels=2}');
+        expect(Bike().toString(), 'Bike{wheels=2, hasEngine=false}');
       });
 
       test('EBike', () {
@@ -26,6 +26,23 @@ void main() {
       test('GiantEBike', () {
         expect(GiantEBike().toString(),
             'GiantEBike{GiantEBike._secondName=Giant eBike Next Generation}');
+      });
+    });
+
+    group('customize inclusion', () {
+      test('HerculesEBike', () {
+        expect(HerculesEBike().toString(),
+            'HerculesEBike{color=black, secondColor=null, hasEngine=true}');
+      });
+
+      test('Hercules2EBike', () {
+        expect(Hercules2EBike().toString(),
+            'Hercules2EBike{color=black, secondColor=null, hasEngine=true, wheels=2}');
+      });
+
+      test('Hercules3EBike', () {
+        expect(Hercules3EBike().toString(),
+            'Hercules3EBike{color=black, secondColor=null, wheels=2, hasEngine=true}');
       });
     });
   });
