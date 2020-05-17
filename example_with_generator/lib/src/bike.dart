@@ -127,3 +127,22 @@ class Hercules3EBike extends EBike {
     return _$hercules3EBikeToString(this);
   }
 }
+
+@ToString()
+class HaibikeEBike extends EBike {
+  static String name = 'Haibike eBike';
+  static String _secondName = 'Haibike eBike Next Generation';
+  @ToStringField(exclude: true)
+  String color = 'black';
+  String secondColor;
+  @ToStringField()
+  var _engine = 'Haibike';
+  @ToStringField(exclude: null)
+  int _gears = 5;
+  int _wheelSize;
+
+  @override
+  String toString() {
+    return _$haibikeEBikeToString(this);
+  }
+}

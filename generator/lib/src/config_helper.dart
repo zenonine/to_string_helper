@@ -44,6 +44,8 @@ Set<FieldConfig> _getFieldConfigs(
       final prefix = fieldElement.isStatic ? '${e.name}.' : '';
 
       final fieldAnnotation = _getFieldAnnotation(fieldElement, ToStringField);
+      final exclude = _peek(fieldAnnotation, 'exclude')?.boolValue ?? false;
+      final forceInclude = fieldAnnotation != null && !exclude;
 
       fieldConfigs.add(FieldConfig(
         '$prefix${fieldElement.name}',
@@ -51,12 +53,12 @@ Set<FieldConfig> _getFieldConfigs(
         include: Include(
           nullValue: _peek(fieldAnnotation, 'includeNullValue')?.boolValue ??
               include.nullValue,
-          nonStatic: include.nonStatic,
-          static: include.static,
-          public: include.public,
-          private: include.private,
+          nonStatic: forceInclude || include.nonStatic,
+          static: forceInclude || include.static,
+          public: forceInclude || include.public,
+          private: forceInclude || include.private,
         ),
-        exclude: _peek(fieldAnnotation, 'exclude')?.boolValue ?? false,
+        exclude: exclude,
         format: FieldFormatConfig(
           truncate: _peek(fieldAnnotation, 'truncate')?.intValue,
           unnamedValue: _peek(fieldAnnotation, 'unnamedValue')?.boolValue,
