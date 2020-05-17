@@ -1,5 +1,5 @@
 name: to_string_helper_generator
-version: 1.0.3-beta
+version: 1.0.3-beta.1
 description: Generate code for package to_string_helper. This package is not needed if you want to use to_string_helper without code generation.
 homepage: https://github.com/zenonine/to_string_helper
 repository: https://github.com/zenonine/to_string_helper/tree/master/generator
@@ -8,7 +8,7 @@ environment:
   sdk: ">=2.0.0 <3.0.0"
 
 dependencies:
-  to_string_helper: ^1.0.0-beta
+  to_string_helper: ^1.0.0
   analyzer: ^0.39.7
   build: ^1.0.0
   source_gen: ^0.9.5
