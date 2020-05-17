@@ -146,3 +146,22 @@ class HaibikeEBike extends EBike {
     return _$haibikeEBikeToString(this);
   }
 }
+
+@ToString()
+class Haibike2EBike extends EBike {
+  static String name = 'Haibike2 eBike';
+  static String _secondName = 'Haibike2 eBike Next Generation';
+  String color = 'black';
+  @ToStringField(includeNullValue: false)
+  String secondColor;
+  @ToStringField()
+  var _engine = 'Haibike2';
+  int _gears = 5;
+  @ToStringField()
+  int _wheelSize;
+
+  @override
+  String toString() {
+    return _$haibike2EBikeToString(this);
+  }
+}

@@ -54,5 +54,12 @@ void main() {
             'HaibikeEBike{secondColor=null, _engine=Haibike, _gears=5}');
       });
     });
+
+    group('@ToStringField(includeNullValue)', () {
+      test('Haibike2EBike', () {
+        expect(Haibike2EBike().toString(),
+            'Haibike2EBike{color=black, _engine=Haibike2, _wheelSize=null}');
+      });
+    });
   });
 }
