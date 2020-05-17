@@ -72,7 +72,8 @@ class ToStringHelper {
   ToStringHelper add(String name, dynamic value,
       {int truncate, bool includeNullValue}) {
     if (object != null) {
-      final memberToString = _memberToString(name, value, truncate: truncate);
+      final memberToString = _memberToString(name, value,
+          truncate: truncate, includeNullValue: includeNullValue);
       if (memberToString.isNotEmpty) {
         // must open before add new member.
         if (_sb.isEmpty) {
@@ -87,7 +88,8 @@ class ToStringHelper {
   /// Adds an unnamed value to the formatted output.
   ToStringHelper addValue(dynamic value,
       {int truncate, bool includeNullValue}) {
-    return add(null, value, truncate: truncate);
+    return add(null, value,
+        truncate: truncate, includeNullValue: includeNullValue);
   }
 
   /// Returns the formatted [String].
