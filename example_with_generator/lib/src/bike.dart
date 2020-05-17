@@ -17,10 +17,25 @@ class Bike extends Vehicle {
 
 @ToString()
 class EBike extends Bike {
+  static String name;
   final hasEngine = true;
+  String color;
+  String _engine;
 
   @override
   String toString() {
     return _$eBikeToString(this);
+  }
+}
+
+@ToString()
+class FischerEBike extends EBike {
+  static String name = 'Fischer eBike';
+  String color = 'red';
+  var _engine = 'Fischer';
+
+  @override
+  String toString() {
+    return _$fischerEBikeToString(this);
   }
 }
