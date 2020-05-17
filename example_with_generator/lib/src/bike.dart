@@ -58,13 +58,14 @@ class TrekEBike extends EBike {
 }
 
 @ToString(
-    globalInclude: Include(
-  nullValue: false,
-  nonStatic: false,
-  static: true,
-  public: false,
-  private: true,
-))
+  globalInclude: Include(
+    nullValue: false,
+    nonStatic: false,
+    static: true,
+    public: false,
+    private: true,
+  ),
+)
 class GiantEBike extends EBike {
   static String name = 'Giant eBike';
   static String _secondName = 'Giant eBike Next Generation';
