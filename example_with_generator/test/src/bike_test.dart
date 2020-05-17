@@ -2,7 +2,7 @@ import 'package:test/test.dart';
 import 'package:to_string_helper_example_with_generator/example.dart';
 
 void main() {
-  group('toString()', () {
+  group('@ToString()', () {
     group('minimal default configuration', () {
       test('Bike', () {
         expect(Bike().toString(), 'Bike{wheels=2, hasEngine=false}');
@@ -17,7 +17,7 @@ void main() {
       });
     });
 
-    group('customize globalInclude', () {
+    group('@ToString(globalInclude)', () {
       test('TrekEBike', () {
         expect(TrekEBike().toString(),
             'TrekEBike{TrekEBike.name=Trek eBike, color=black}');
@@ -29,7 +29,7 @@ void main() {
       });
     });
 
-    group('customize inclusion', () {
+    group('@ToString(inclusion)', () {
       test('HerculesEBike', () {
         expect(HerculesEBike().toString(),
             'HerculesEBike{color=black, secondColor=null, hasEngine=true}');
