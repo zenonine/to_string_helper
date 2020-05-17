@@ -17,6 +17,7 @@ class ToStringField {
   final bool includeNullValue;
 
   /// * No truncate if smaller than or equal zero.
+  /// * No truncate if field's value is [null].
   /// * Inherit [truncate] configuration in [@ToString()] if [null].
   final int truncate;
 

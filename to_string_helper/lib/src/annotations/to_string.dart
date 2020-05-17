@@ -30,7 +30,8 @@ class ToString {
   /// * valid: [@ToString(separator = '\\\$')]
   final String separator;
 
-  /// No truncate if smaller than or equal zero.
+  /// * No truncate if smaller than or equal zero.
+  /// * No truncate if field's value is [null].
   final int truncate;
 
   /// If [true], output shouldn't include field's name, only include field's value.

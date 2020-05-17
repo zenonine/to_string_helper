@@ -45,6 +45,12 @@ void main() {
             'Hercules3EBike{color=black, secondColor=null, wheels=2, hasEngine=true}');
       });
     });
+
+    group('@ToString(nullString, separator, truncate, unnamedValue)', () {
+      test('MoterraEBike', () {
+        expect(MoterraEBike().toString(), 'MoterraEBike{bla\$NULL}');
+      });
+    });
   });
 
   group('@ToStringField()', () {
@@ -59,6 +65,25 @@ void main() {
       test('Haibike2EBike', () {
         expect(Haibike2EBike().toString(),
             'Haibike2EBike{color=black, _engine=Haibike2, _wheelSize=null}');
+      });
+    });
+
+    group('@ToStringField(truncate)', () {
+      test('Haibike3EBike', () {
+        expect(
+            Haibike3EBike().toString(),
+            'Haibike3EBike{'
+            'Haibike3EBike._secondName=Haibike3 e'
+            ', color=black'
+            ', secondColor=null'
+            '}');
+      });
+    });
+
+    group('@ToStringField(unnamedValue)', () {
+      test('Haibike4EBike', () {
+        expect(Haibike4EBike().toString(),
+            'Haibike4EBike{black, secondColor=null}');
       });
     });
   });

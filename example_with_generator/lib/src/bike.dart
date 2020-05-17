@@ -128,6 +128,18 @@ class Hercules3EBike extends EBike {
   }
 }
 
+@ToString(
+    nullString: 'NULL', separator: '\\\$', truncate: 3, unnamedValue: true)
+class MoterraEBike extends EBike {
+  String color = 'black';
+  String secondColor;
+
+  @override
+  String toString() {
+    return _$moterraEBikeToString(this);
+  }
+}
+
 @ToString()
 class HaibikeEBike extends EBike {
   static String name = 'Haibike eBike';
@@ -163,5 +175,40 @@ class Haibike2EBike extends EBike {
   @override
   String toString() {
     return _$haibike2EBikeToString(this);
+  }
+}
+
+@ToString()
+class Haibike3EBike extends EBike {
+  static String name = 'Haibike3 eBike';
+  @ToStringField(truncate: 10)
+  static String _secondName = 'Haibike3 eBike Next Generation';
+  String color = 'black';
+  @ToStringField(truncate: 1)
+  String secondColor;
+  var _engine = 'Haibike3';
+  int _gears = 5;
+  int _wheelSize;
+
+  @override
+  String toString() {
+    return _$haibike3EBikeToString(this);
+  }
+}
+
+@ToString()
+class Haibike4EBike extends EBike {
+  static String name = 'Haibike3 eBike';
+  static String _secondName = 'Haibike4EBike eBike Next Generation';
+  @ToStringField(unnamedValue: true)
+  String color = 'black';
+  String secondColor;
+  var _engine = 'Haibike4EBike';
+  int _gears = 5;
+  int _wheelSize;
+
+  @override
+  String toString() {
+    return _$haibike4EBikeToString(this);
   }
 }

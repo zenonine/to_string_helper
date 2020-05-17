@@ -17,7 +17,8 @@ class ToStringHelper {
   /// * valid: [@ToString(separator = '\\\$')]
   final String separator;
 
-  /// No truncate if smaller than or equal zero
+  /// * No truncate if the given [truncate] smaller than or equal zero.
+  /// * No truncate if field's value is [null].
   final int truncate;
 
   /// If the field's value is [null],
