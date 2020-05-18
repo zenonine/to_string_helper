@@ -51,6 +51,16 @@ void main() {
         expect(MoterraEBike().toString(), 'MoterraEBike{bla\$NULL}');
       });
     });
+
+    group('mixin', () {
+      test('AdoreEBike', () {
+        expect(AdoreEBike().toString(), 'AdoreEBike{}');
+      });
+
+      test('Adore2EBike', () {
+        expect(Adore2EBike().toString(), 'Adore2EBike{name=AdoreEBike eBike}');
+      });
+    });
   });
 
   group('@ToStringField()', () {
