@@ -213,3 +213,27 @@ class Haibike4EBike extends EBike {
     return _$haibike4EBikeToString(this);
   }
 }
+
+mixin MAdoreEBikeA {
+  String name = 'AdoreEBike eBike';
+}
+
+mixin MAdoreEBikeB {
+  String secondName = 'AdoreEBike eBike Next Generation';
+}
+
+@ToString()
+class AdoreEBike extends EBike with MAdoreEBikeA, MAdoreEBikeB {
+  @override
+  String toString() {
+    return _$adoreEBikeToString(this);
+  }
+}
+
+@ToString(inclusion: {MAdoreEBikeA: Include()})
+class Adore2EBike extends EBike with MAdoreEBikeA, MAdoreEBikeB {
+  @override
+  String toString() {
+    return _$adore2EBikeToString(this);
+  }
+}
