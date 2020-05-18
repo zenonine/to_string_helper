@@ -1,5 +1,5 @@
 name: to_string_helper
-version: 1.0.4
+version: 1.0.5
 description: Flexibly configure output of toString method (with or without code generation).
 homepage: https://github.com/zenonine/to_string_helper
 repository: https://github.com/zenonine/to_string_helper/tree/master/to_string_helper

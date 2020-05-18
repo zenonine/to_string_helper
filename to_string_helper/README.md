@@ -21,11 +21,14 @@ Otherwise, you only need this package.
    class Bike {
      final hasEngine = false;
      final wheels = 2;
-
-     return ToStringHelper(this)
-       .add('wheels', wheels) // named value
-       .addValue(hasEngine) // unnamed value
-       .toString();
+   
+     @override
+     String toString() {
+       return ToStringHelper(this)
+         .add('wheels', wheels) // named value
+         .addValue(hasEngine) // unnamed value
+         .toString();
+     }
    }
    ```
 3. Output
@@ -113,12 +116,17 @@ Otherwise, you only need this package.
           ```
     * [Pretty print (TODO)](https://github.com/zenonine/to_string_helper/issues/17)
 
-* Exclude a specific field
+* Force include/exclude a specific field regardless configuration in `@ToString()`
   ```dart
   @ToString()
   class Bike {
+    // force to exclude field wheels
     @ToStringField(exclude: true)
     final wheels = 2;
+    
+    // force to include field _engine
+    @ToStringField()
+    final _engine = 'No Engine';
   }
   ```
 
@@ -154,7 +162,7 @@ Otherwise, you only need this package.
 
 * Include/exclude inherited fields from super classes
 
-  By default, only declared fields in the annotated class are included in output.
+  By default, only declared fields in the annotated class are included in the output.
 
   To include non-override inherited fields, you must declare it in `@ToString()`.
 
@@ -196,21 +204,47 @@ Otherwise, you only need this package.
   }
   ```
 
-* How do `inclusion` and `globalInclude` work?
-    * It checks `inclusion` map to determine which class should be scanned for the output.
-      If the current annotated class is not found in `inclusion` map,
-      it adds automatically entry `{Bike: Include()}` to the map.
+* How do `inclusion` map and `globalInclude` work?
+    * `inclusion` map determines which class should be scanned for the output.
+      If the current annotated class, ex. `EBike1` in the example above, is not found in `inclusion` map,
+      entry `{EBike1: Include()}` is added automatically to the map.
     * If `globalInclude` is not specified, `Include()` instance is created and used automatically.
-    * `Include` in `inclusion` map and `globalInclude` is merged.
+    * `Include` in `inclusion` map and `globalInclude` are then merged.
       Below is an example how the attribute `nullValue` is merged.
-        * If `inclusion[Bike].nullValue` is `null`, check `globalInclude.nullValue`.
-        * If `globalInclude.nullValue` is `null`, fallback to default `Include` attribute value.
-    * Default `Include` attribute values:
-        * `nullValue`: `true`
-        * `nonStatic`: `true`
-        * `static`: `false`
-        * `public`: `true`
-        * `private`: `false`
+        * If `inclusion[Bike].nullValue == null`, use `globalInclude.nullValue`.
+        * If `globalInclude.nullValue == null`, use the fallback value (see [default configuration](#default-configuration)).
+
+# Default configuration
+* The 2 examples below are treated equally:
+  ```dart
+  @ToString()
+  class Bike {/*...*/}
+  ```
+
+  ```dart
+  @ToString(
+    globalInclude: Include(),
+    inclusion: {Bike: Include()},
+    nullString: 'null',
+    separator: ', ',
+    truncate: 0,
+    unnamedValue: false,
+  )
+  class Bike {/*...*/}
+  ```
+* `inclusion: {Bike: Include(static: true)}` means inheriting all attributes from `globalInclude`, except `Include.static`.
+* `globalInclude: Include(static: true)` means using fallback values for all attributes, except `Include.static`.
+* Fallback values of `Include()`:
+    * `nullValue`: `true`
+    * `nonStatic`: `true`
+    * `static`: `false`
+    * `public`: `true`
+    * `private`: `false`
+* `@ToStringField()`, `@ToStringField(exclude: false)` or `@ToStringField(exclude: null)` are treated equally. It means, force to include the field regardless of configuration in `@ToString()`.
+* `@ToStringField(exclude: true)`: force to exclude the field regardless of configuration in `@ToString()`.
+* `ToStringField.includeNullValue == null` means inheriting `Include.nullValue` from `@ToString()` after merging `globalInclude` and `inclusion`.
+* `ToStringField.truncate == null` means inheriting `ToString.truncate`.
+* `ToStringField.unnamedValue == null` means inheriting `ToString.unnamedValue`.
 
 # More examples:
 * [Example - without code generator](https://github.com/zenonine/to_string_helper/tree/master/example_without_generator)

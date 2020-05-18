@@ -1,3 +1,6 @@
+# 1.0.5
+* Improved documentation.
+
 # 1.0.4
 * Documented implemented features.
 
