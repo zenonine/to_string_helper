@@ -76,6 +76,7 @@ Otherwise, you only need this package.
 
    part 'bike.g.dart';
 
+   // Name of the generated mixin is in format _$<ClassName>ToString
    @ToStringMixin()
    class Bike with _$BikeToString {
      final hasEngine = false;
