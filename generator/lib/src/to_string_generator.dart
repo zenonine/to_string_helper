@@ -14,12 +14,22 @@ class ToStringGenerator extends GeneratorForAnnotation<ToString> {
       Element element, ConstantReader annotation, BuildStep buildStep) async {
     if (element is! ClassElement) {
       throw InvalidGenerationSourceError(
-          '@ToString() should only be annotated on class target',
+          '@ToString() should only be annotated on target class',
           element: element);
     }
     final clazz = element as ClassElement;
 
-    return _generateToStringMethod(clazz, getConfig(annotation, clazz));
+    return _generateCode(clazz, getConfig(annotation, clazz));
+  }
+
+  String _generateCode(ClassElement clazz, Config config) {
+    if (config.mixin) {
+      return _generateToStringMethod(clazz, config) +
+          '\n\n' +
+          _generateToStringMixin(clazz.name);
+    } else {
+      return _generateToStringMethod(clazz, config);
+    }
   }
 
   String _generateToStringMethod(ClassElement clazz, Config config) {
@@ -77,6 +87,32 @@ class ToStringGenerator extends GeneratorForAnnotation<ToString> {
     sb.writeln('}');
 
     return sb.toString();
+  }
+
+  String _generateToStringMixin(String classname) {
+    final mixinName = _getToStringMixinName(classname);
+    final methodName = _getToStringMethodName(classname);
+
+    final sb = StringBuffer();
+
+    // start mixin
+    sb.writeln('mixin $mixinName {');
+
+    // mixin body
+    sb
+      ..writeln('@override')
+      ..writeln('String toString() {')
+      ..writeln('return $methodName(this);')
+      ..writeln('}');
+
+    // close mixin
+    sb.writeln('}');
+
+    return sb.toString();
+  }
+
+  String _getToStringMixinName(String classname) {
+    return '_\$${classname}ToString';
   }
 
   String _getToStringMethodName(String classname) {

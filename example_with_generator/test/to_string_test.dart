@@ -97,4 +97,10 @@ void main() {
       });
     });
   });
+
+  group('@ToStringMixin()', () {
+    test('Car', () {
+      expect(Car().toString(), 'Car{Car, _engine=null, 4}');
+    });
+  });
 }

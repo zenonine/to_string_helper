@@ -19,7 +19,14 @@ const defaultInclude = Include(
 );
 
 Config getConfig(ConstantReader annotation, ClassElement classElement) {
+  if (!_isToString(annotation)) {
+    throw InvalidGenerationSourceError(
+        'Target class should only be annotated with @ToString() or @ToStringMixin()',
+        element: classElement);
+  }
+
   return Config(
+    mixin: _isToStringMixin(annotation),
     format: FormatConfig(
       nullString: _peek(annotation, 'nullString')?.stringValue ??
           defaultFormatConfig.nullString,
@@ -169,4 +176,14 @@ ConstantReader _getFieldAnnotation(FieldElement element, Type annotationType) {
   }
 
   return null;
+}
+
+bool _isToString(ConstantReader annotation) {
+  return annotation?.instanceOf(const TypeChecker.fromRuntime(ToString)) ??
+      false;
+}
+
+bool _isToStringMixin(ConstantReader annotation) {
+  return annotation?.instanceOf(const TypeChecker.fromRuntime(ToStringMixin)) ??
+      false;
 }

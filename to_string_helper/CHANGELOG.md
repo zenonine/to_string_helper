@@ -1,3 +1,6 @@
+# 1.1.0
+* Added annotation `@ToStringMixin`.
+
 # 1.0.5
 * Improved documentation.
 
