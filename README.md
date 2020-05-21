@@ -1,5 +1,5 @@
 # to_string_helper
-Flexibly configure output of `toString` method (with or without code generation).
+Flexibly configure output of `toString` method (with or without code generation) (with or without mixin).
 
 You can choose either to use code generator or not.
 
