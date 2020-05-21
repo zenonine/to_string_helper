@@ -46,6 +46,17 @@ Otherwise, you only need this package.
        to_string_helper_generator: ^1.0.0
    ```
 2. Configure your class
+* With mixin
+   ```dart
+   import 'package:to_string_helper/to_string_helper.dart';
+
+   // assume current file is bike.dart, the generated code should be in bike.g.dart
+   part 'bike.g.dart';
+
+   @ToStringMixin()
+   class Bike {/*...*/}
+   ```
+* Without mixin
    ```dart
    import 'package:to_string_helper/to_string_helper.dart';
 
@@ -59,6 +70,19 @@ Otherwise, you only need this package.
     * `pub run build_runner build`: run a single build and exit.
     * `pub run build_runner watch`: continuously run builds as you edit files.
 4. Use the generated code to produce output of `toString`
+* With mixin
+   ```dart
+   import 'package:to_string_helper/to_string_helper.dart';
+
+   part 'bike.g.dart';
+
+   @ToStringMixin()
+   class Bike with _$BikeToString {
+     final hasEngine = false;
+     final wheels = 2;
+   }
+   ```
+* Without mixin
    ```dart
    import 'package:to_string_helper/to_string_helper.dart';
 
@@ -212,9 +236,12 @@ Otherwise, you only need this package.
     * `Include` in `inclusion` map and `globalInclude` are then merged.
       Below is an example how the attribute `nullValue` is merged.
         * If `inclusion[Bike].nullValue == null`, use `globalInclude.nullValue`.
-        * If `globalInclude.nullValue == null`, use the fallback value (see [default configuration](#default-configuration)).
+        * If `globalInclude.nullValue == null`, use the fallback value
+          (see [default configuration](#default-configuration)).
 
 # Default configuration
+* Configuration of `@ToString` and `@ToStringMixin` is exactly identical.
+  `@ToStringMixin` generates the same code as `@ToString` and additionally a mixin class.
 * The 2 examples below are treated equally:
   ```dart
   @ToString()
@@ -240,9 +267,11 @@ Otherwise, you only need this package.
     * `static`: `false`
     * `public`: `true`
     * `private`: `false`
-* `@ToStringField()`, `@ToStringField(exclude: false)` or `@ToStringField(exclude: null)` are treated equally. It means, force to include the field regardless of configuration in `@ToString()`.
+* `@ToStringField()`, `@ToStringField(exclude: false)` or `@ToStringField(exclude: null)` are treated equally.
+  It means, force to include the field regardless of configuration in `@ToString()`.
 * `@ToStringField(exclude: true)`: force to exclude the field regardless of configuration in `@ToString()`.
-* `ToStringField.includeNullValue == null` means inheriting `Include.nullValue` from `@ToString()` after merging `globalInclude` and `inclusion`.
+* `ToStringField.includeNullValue == null` means inheriting `Include.nullValue` from `@ToString()`
+  after merging `globalInclude` and `inclusion`.
 * `ToStringField.truncate == null` means inheriting `ToString.truncate`.
 * `ToStringField.unnamedValue == null` means inheriting `ToString.unnamedValue`.
 

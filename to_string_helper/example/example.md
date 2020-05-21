@@ -34,8 +34,22 @@
     build_runner: ^1.0.0
     to_string_helper_generator: ^1.0.0
   ```
+* `bike.dart` with mixin
+  ```dart
+  import 'package:to_string_helper/to_string_helper.dart';
 
-* `bike.dart`
+  part 'bike.g.dart';
+
+  // Name of the generated mixin is in format _$<ClassName>ToString  
+  @ToStringMixin()
+  class Bike with _$BikeToString {
+    final hasEngine = false;
+
+    @ToStringField(exclude: true)
+    final wheels = 2;
+  }
+  ```
+* `bike.dart` without mixin
   ```dart
   import 'package:to_string_helper/to_string_helper.dart';
 
