@@ -75,7 +75,7 @@ Otherwise, you only need this package.
    import 'package:to_string_helper/to_string_helper.dart';
 
    part 'bike.g.dart';
-  
+
    // Name of the generated mixin is in format _$<ClassName>ToString
    @ToStringMixin()
    class Bike with _$BikeToString {
