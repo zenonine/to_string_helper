@@ -102,7 +102,7 @@ class ToStringGenerator extends GeneratorForAnnotation<ToString> {
     sb
       ..writeln('@override')
       ..writeln('String toString() {')
-      ..writeln('return $methodName(this);')
+      ..writeln('return $methodName(this as $classname);')
       ..writeln('}');
 
     // close mixin

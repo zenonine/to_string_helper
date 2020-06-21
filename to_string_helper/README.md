@@ -11,7 +11,7 @@ Otherwise, you only need this package.
 1. Add dependency to your `pubspec.yaml`
    ```yaml
    dependencies:
-       to_string_helper: ^1.0.0
+       to_string_helper: ^1.1.0
    ```
 2. Configure your class
    ```dart
@@ -40,10 +40,10 @@ Otherwise, you only need this package.
 1. Add dependencies to your `pubspec.yaml`
    ```yaml
    dependencies:
-       to_string_helper: ^1.0.0
+       to_string_helper: ^1.1.0
    dev_dependencies:
        build_runner: ^1.0.0
-       to_string_helper_generator: ^1.0.0
+       to_string_helper_generator: ^1.1.0
    ```
 2. Configure your class
 * With mixin
@@ -67,8 +67,8 @@ Otherwise, you only need this package.
    class Bike {/*...*/}
    ```
 3. Generate code (see [build_runner](https://pub.dev/packages/build_runner))
-    * `pub run build_runner build`: run a single build and exit.
-    * `pub run build_runner watch`: continuously run builds as you edit files.
+    * `pub run build_runner build` or `flutter packages run build_runner build`: run a single build and exit.
+    * `pub run build_runner watch` or `flutter packages run build_runner watch`: continuously run builds as you edit files.
 4. Use the generated code to produce output of `toString`
 * With mixin
    ```dart

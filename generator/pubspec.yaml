@@ -10,7 +10,7 @@ environment:
   sdk: ">=2.0.0 <3.0.0"
 
 dependencies:
-  to_string_helper: ^1.0.0
+  to_string_helper: ^1.1.0
   analyzer: ^0.39.7
   build: ^1.0.0
   source_gen: ^0.9.5
