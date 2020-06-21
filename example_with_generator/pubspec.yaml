@@ -5,13 +5,13 @@ environment:
   sdk: ">=2.0.0 <3.0.0"
 
 dependencies:
-  to_string_helper: ^1.0.0
+  to_string_helper: ^1.1.0
 
 dev_dependencies:
   test: ^1.0.0
 
   build_runner: ^1.0.0
-  to_string_helper_generator: ^1.0.0
+  to_string_helper_generator: ^1.1.0
 
 #dependency_overrides:
 #  to_string_helper:
