@@ -276,6 +276,9 @@ Otherwise, you only need this package.
 * `ToStringField.truncate == null` means inheriting `ToString.truncate`.
 * `ToStringField.unnamedValue == null` means inheriting `ToString.unnamedValue`.
 
-# More examples:
+# More examples
 * [Example - without code generator](https://github.com/zenonine/to_string_helper/tree/master/example_without_generator)
 * [Example - with code generator](https://github.com/zenonine/to_string_helper/tree/master/example_with_generator)
+
+# Testing
+You can find all unit tests in [examples](#more-examples) mentioned above.
