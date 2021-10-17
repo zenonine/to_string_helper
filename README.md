@@ -1,4 +1,6 @@
-# to_string_helper
+# Discontinued!
+
+---
 Flexibly configure output of `toString` method (with or without code generation) (with or without mixin).
 
 You can choose either to use code generator or not.
